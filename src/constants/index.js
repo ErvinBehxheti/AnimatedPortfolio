@@ -23,6 +23,48 @@ export const navLinks = [
 
 export const myProjects = [
   {
+    title: 'Neural Blogging',
+    desc: 'This project is a Progressive Web App (PWA) designed to provide a seamless native app experience on mobile devices. It leverages ChatGPT and web APIs to assist users in creating blog posts. When a new blog post is published, all registered devices with notifications enabled will receive a notification, ensuring users stay updated with the latest content. The app combines the accessibility of a website with the functionality and engagement of a native application. For the moment I have disabled the notification feature',
+    subdesc:
+      'A Progressive Web App (PWA) that allows users to write their own articles with the help of AI-based autosuggestions powered by ChatGPT. Additionally, it features a chatbot with the personality of Dumbledore, where users can ask questions and receive insightful answers.',
+    href: 'https://neural-blogging.vercel.app',
+    texture: '/textures/project/neural-blogging.mp4',
+    logo: '/assets/neural-blogging.png',
+    logoStyle: {
+      backgroundColor: '#13202F',
+      border: '0.2px solid #17293E',
+      boxShadow: '0px 0px 60px 0px #2F6DB54D',
+    },
+    spotlight: '/assets/spotlight5.png',
+    tags: [
+      {
+        id: 0,
+        name: 'NextJS',
+        path: 'https://cdn.worldvectorlogo.com/logos/next-js.svg',
+      },
+      {
+        id: 1,
+        name: 'React.js',
+        path: '/assets/react.svg',
+      },
+      {
+        id: 2,
+        name: 'TailwindCSS',
+        path: 'assets/tailwindcss.png',
+      },
+      {
+        id: 3,
+        name: 'TypeScript',
+        path: '/assets/typescript.png',
+      },
+      {
+        id: 4,
+        name: 'Framer Motion',
+        path: '/assets/framer.png',
+      },
+    ],
+  },
+  {
     title: 'Kosherja (BeeHive)',
     desc: 'This project is a user management platform with a modern UI/UX. Admins sign up with token-based authentication and use these tokens to scrape LinkedIn profiles for public information, including emails. They can then contact these users, manage them on a dedicated page, and store all scraped data. Additionally, the platform allows admins to download user data in Excel format.',
     subdesc:
@@ -60,48 +102,6 @@ export const myProjects = [
         id: 4,
         name: 'Cheerio',
         path: 'https://cheerio.js.org/img/orange-c.svg',
-      },
-    ],
-  },
-  {
-    title: 'Neural Blogging',
-    desc: 'This project is a Progressive Web App (PWA) designed to provide a seamless native app experience on mobile devices. It leverages ChatGPT and web APIs to assist users in creating blog posts. When a new blog post is published, all registered devices with notifications enabled will receive a notification, ensuring users stay updated with the latest content. The app combines the accessibility of a website with the functionality and engagement of a native application. For the moment I have disabled the notification feature',
-    subdesc:
-      'A Progressive Web App (PWA) that allows users to write their own articles with the help of AI-based autosuggestions powered by ChatGPT. Additionally, it features a chatbot with the personality of Dumbledore, where users can ask questions and receive insightful answers.',
-    href: 'https://neural-blogging.vercel.app',
-    texture: '/textures/project/neural-blogging.mp4',
-    logo: '/assets/neural-blogging.png',
-    logoStyle: {
-      backgroundColor: '#13202F',
-      border: '0.2px solid #17293E',
-      boxShadow: '0px 0px 60px 0px #2F6DB54D',
-    },
-    spotlight: '/assets/spotlight2.png',
-    tags: [
-      {
-        id: 0,
-        name: 'NextJS',
-        path: 'https://cdn.worldvectorlogo.com/logos/next-js.svg',
-      },
-      {
-        id: 1,
-        name: 'React.js',
-        path: '/assets/react.svg',
-      },
-      {
-        id: 2,
-        name: 'TailwindCSS',
-        path: 'assets/tailwindcss.png',
-      },
-      {
-        id: 3,
-        name: 'TypeScript',
-        path: '/assets/typescript.png',
-      },
-      {
-        id: 4,
-        name: 'Framer Motion',
-        path: '/assets/framer.png',
       },
     ],
   },
@@ -155,6 +155,91 @@ export const myProjects = [
         id: 6,
         name: 'Stripe',
         path: 'https://images.ctfassets.net/kftzwdyauwt9/6c20363e-30c0-486d-2e9bfa611583/b15f2e43a5a525763c966ab4562a31b2/stripe.jpg?w=3840&q=90&fm=webp',
+      },
+    ],
+  },
+  {
+    title: 'PriceSeer',
+    desc: "Using Next.js Server Actions, I created a web scraper that collects product information from the Amazon website and adds it to PriceSeer, a price-tracking platform. The scraper efficiently retrieves data such as product prices, descriptions, and availability. To enhance user experience, I also implemented cron jobs that run at scheduled intervals, automatically notifying subscribers whenever there are changes to the product's price or other key details. This ensures users are kept informed in real-time, allowing them to act on price fluctuations or product updates quickly. (SCRAPING NOT WORKING MOMENTARILY)",
+    subdesc:
+      'Scraping website with cron job implementation fully utilizing the back end power of Next.js',
+    href: 'https://priceseer.vercel.app/',
+    texture: '/textures/project/priceseer.mp4',
+    logo: 'https://priceseer.vercel.app/assets/icons/logo.svg',
+    logoStyle: {
+      backgroundColor: '#13202F',
+      border: '0.2px solid #17293E',
+      boxShadow: '0px 0px 60px 0px #2F6DB54D',
+    },
+    spotlight: '/assets/spotlight1.png',
+    tags: [
+      {
+        id: 0,
+        name: 'NextJS',
+        path: 'https://cdn.worldvectorlogo.com/logos/next-js.svg',
+      },
+      {
+        id: 1,
+        name: 'React.js',
+        path: '/assets/react.svg',
+      },
+      {
+        id: 2,
+        name: 'TailwindCSS',
+        path: 'assets/tailwindcss.png',
+      },
+      {
+        id: 3,
+        name: 'TypeScript',
+        path: '/assets/typescript.png',
+      },
+      {
+        id: 4,
+        name: 'Cheerio',
+        path: 'https://cheerio.js.org/img/orange-c.svg',
+      },
+    ],
+  },
+  {
+    title: 'TikTik - Social Media App',
+    desc: 'The website is a TikTok clone built using modern web development technologies, providing a seamless and engaging experience for users. Developed with Next.js, the site ensures fast server-side rendering and optimized performance. Tailwind CSS is used to create a sleek, responsive, and mobile-friendly user interface, giving the platform a visually appealing design that works effortlessly across devices.Sanity.io powers the backend, allowing for efficient content management and dynamic video uploads. The integration of Google authentication simplifies the login process, offering users a secure and frictionless way to sign in or create accounts. Search filters are implemented to help users discover content easily, enhancing the browsing experience.The file structure of the application is well-organized, promoting scalability and maintainability.',
+    subdesc: '',
+    href: 'https://tiktik-03.vercel.app/',
+    texture: '/textures/project/tiktik.mp4',
+    logo: 'https://www.freepnglogos.com/uploads/camera-logo-png/photography-clipart-camera-logo-pencil-color-6.png',
+    logoStyle: {
+      backgroundColor: '#60f5a1',
+      background:
+        'linear-gradient(0deg, #60F5A150, #60F5A150), linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(208, 213, 221, 0.8) 100%)',
+      border: '0.2px solid rgba(208, 213, 221, 1)',
+      boxShadow: '0px 0px 60px 0px rgba(35, 131, 96, 0.3)',
+    },
+    spotlight: '/assets/spotlight2.png',
+    tags: [
+      {
+        id: 0,
+        name: 'NextJS',
+        path: 'https://cdn.worldvectorlogo.com/logos/next-js.svg',
+      },
+      {
+        id: 1,
+        name: 'React.js',
+        path: '/assets/react.svg',
+      },
+      {
+        id: 2,
+        name: 'TailwindCSS',
+        path: 'assets/tailwindcss.png',
+      },
+      {
+        id: 3,
+        name: 'TypeScript',
+        path: '/assets/typescript.png',
+      },
+      {
+        id: 5,
+        name: 'Sanity',
+        path: 'https://cdn.sanity.io/images/o0o2tn5x/production/eb0843b1adb22478e8f30d7fe89b377ebc6d5e85-280x280.png',
       },
     ],
   },
