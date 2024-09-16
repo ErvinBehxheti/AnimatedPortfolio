@@ -1,6 +1,11 @@
-const Button = ({ name, isBeam = false, containerClass }) => {
+const Button = ({
+  name,
+  isBeam = false,
+  containerClass,
+  href = "#contact",
+}) => {
   return (
-    <button className={`btn ${containerClass}`}>
+    <a className={`btn ${containerClass}`} href={href}>
       {isBeam && (
         <span className="relative flex h-3 w-3">
           <span className="btn-ping"></span>
@@ -8,7 +13,7 @@ const Button = ({ name, isBeam = false, containerClass }) => {
         </span>
       )}
       {name}
-    </button>
+    </a>
   );
 };
 
