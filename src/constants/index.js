@@ -107,7 +107,7 @@ export const myProjects = [
   },
   {
     title: 'DigitalLove - ECommerce Store',
-    desc: 'This project is a streamlined eCommerce platform built with Next.js, Sanity, and Stripe. It features a user-friendly interface where customers can browse products, view detailed descriptions, and make secure purchases. Sanity handles content management, allowing for easy updates to product listings and site content. Stripe integrates for seamless payment processing, supporting various payment methods and ensuring secure transactions. The platform provides a smooth shopping experience with fast loading times and responsive design, optimized for both desktop and mobile devices.An innovative healthcare platform designed to streamline essential medical processes. It simplifies patient registration, appointment scheduling, and medical record management, providing a seamless experience for both healthcare providers and patients.',
+    desc: 'This project is a streamlined eCommerce platform built with Next.js, Sanity, and Stripe. It features a user-friendly interface where customers can browse products, view detailed descriptions, and make secure purchases. Sanity handles content management, allowing for easy updates to product listings and site content. Stripe integrates for seamless payment processing, supporting various payment methods and ensuring secure transactions. The platform provides a smooth shopping experience with fast loading times and responsive design, optimized for both desktop and mobile devices.',
     subdesc: 'A simple eCommerce site using Next.js, Sanity for content management, and Stripe for secure payments.',
     href: 'https://next-typescript-ecommerce-sanity-stripe-wggq.vercel.app/',
     texture: '/textures/project/digital-love.mp4',
