@@ -3,12 +3,12 @@ import React from "react";
 
 const HackerRoom = React.memo((props) => {
   const { nodes, materials } = useGLTF(
-    "https://yevrlyjbjrdyizogzbzo.supabase.co/storage/v1/object/public/portfolio/hacker-room.glb"
+    "models/hacker-room.glb"
   );
 
   const monitortxt = useTexture("textures/desk/monitor.png");
   const screenTxt = useTexture(
-    "https://yevrlyjbjrdyizogzbzo.supabase.co/storage/v1/object/public/portfolio/screen.png"
+    "textures/desk/screen.png"
   );
 
   return (
@@ -82,5 +82,5 @@ const HackerRoom = React.memo((props) => {
 export default HackerRoom;
 
 useGLTF.preload(
-  "https://yevrlyjbjrdyizogzbzo.supabase.co/storage/v1/object/public/portfolio/hacker-room.glb"
+  "models/hacker-room.glb"
 );
