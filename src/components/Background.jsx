@@ -36,7 +36,7 @@ const BackgroundMatrix = () => {
     let mixer; // For model animations
 
     loader.load(
-      "models/matrix_void.glb",
+      "models/compressed1.glb",
       (gltf) => {
         const model = gltf.scene;
         model.scale.set(100, 100, 100);
@@ -80,7 +80,10 @@ const BackgroundMatrix = () => {
 
     // Animation loop
     const clock = new THREE.Clock();
+    let isAnimating = true;
+
     const animate = () => {
+      if (!isAnimating) return;
       requestAnimationFrame(animate);
       const delta = clock.getDelta();
       mixer?.update(delta);
@@ -91,8 +94,19 @@ const BackgroundMatrix = () => {
 
     // Cleanup function to remove event listeners and dispose of resources
     return () => {
-      renderer.dispose();
-      controls.dispose();
+      if (renderer) {
+        renderer.dispose();
+      }
+      if (controls) {
+        controls.dispose();
+      }
+      // Dispose of the scene and its children if necessary
+      scene.traverse((child) => {
+        if (child.isMesh) {
+          child.geometry.dispose();
+          child.material.dispose();
+        }
+      });
     };
   }, []);
 
@@ -101,7 +115,7 @@ const BackgroundMatrix = () => {
       id="background-matrix"
       ref={mountRef}
       className="w-full h-full fixed inset-0 left-0 right-0 bottom-0"
-    />
+    ></div>
   );
 };
 
