@@ -6,18 +6,22 @@ import Navbar from "./sections/Navbar.jsx";
 import Contact from "./sections/Contact.jsx";
 import Projects from "./sections/Projects.jsx";
 import WorkExperience from "./sections/Experience.jsx";
+import BackgroundMatrix from "./components/Background.jsx";
 
 const App = () => {
   return (
-    <main className="max-w-7xl mx-auto relative">
-      <Navbar />
-      <Hero />
-      <About />
-      <Projects />
-      <WorkExperience />
-      <Contact />
-      <Footer />
-    </main>
+    <>
+      <BackgroundMatrix />
+      <main className="max-w-7xl mx-auto relative">
+        <Navbar />
+        <Hero />
+        <About />
+        <Projects />
+        <WorkExperience />
+        <Contact />
+        <Footer />
+      </main>
+    </>
   );
 };
 
