@@ -36,7 +36,7 @@ const BackgroundMatrix = () => {
     let mixer; // For model animations
 
     loader.load(
-      "models/compressed1.glb",
+      `${process.env.PUBLIC_SUPABASE}/storage/v1/object/public/images/compressed1.glb`,
       (gltf) => {
         const model = gltf.scene;
         model.scale.set(100, 100, 100);

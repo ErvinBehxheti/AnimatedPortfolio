@@ -35,7 +35,7 @@ export const myProjects = [
       border: "0.2px solid #17293E",
       boxShadow: "0px 0px 60px 0px #2F6DB54D",
     },
-    spotlight: "/assets/spotlight5.png",
+    spotlight: "/assets/spotlight5.webp",
     tags: [
       {
         id: 0,
@@ -76,7 +76,7 @@ export const myProjects = [
       border: "0.2px solid #36201D",
       boxShadow: "0px 0px 60px 0px #AA3C304D",
     },
-    spotlight: "/assets/spotlight1.png",
+    spotlight: "/assets/spotlight1.webp",
     tags: [
       {
         id: 0,
@@ -120,7 +120,7 @@ export const myProjects = [
       border: "0.2px solid rgba(208, 213, 221, 1)",
       boxShadow: "0px 0px 60px 0px rgba(35, 131, 96, 0.3)",
     },
-    spotlight: "/assets/spotlight3.png",
+    spotlight: "/assets/spotlight3.webp",
     tags: [
       {
         id: 0,
@@ -172,7 +172,7 @@ export const myProjects = [
       border: "0.2px solid #17293E",
       boxShadow: "0px 0px 60px 0px #2F6DB54D",
     },
-    spotlight: "/assets/spotlight1.png",
+    spotlight: "/assets/spotlight1.webp",
     tags: [
       {
         id: 0,
