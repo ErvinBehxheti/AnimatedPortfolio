@@ -6,7 +6,7 @@ import { SkeletonUtils } from "three-stdlib";
 const Developer = ({ animationName = "idle", ...props }) => {
   const group = useRef();
 
-  const { scene } = useGLTF("/models/animations/developer.glb", true);
+  const { scene } = useGLTF(`${process.env.PUBLIC_SUPABASE}/storage/v1/object/public/images/developer.glb`, true);
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene]);
   const { nodes, materials } = useGraph(clone);
 
@@ -91,6 +91,6 @@ const Developer = ({ animationName = "idle", ...props }) => {
   );
 };
 
-useGLTF.preload("/models/animations/developer.glb", true);
+useGLTF.preload(`${process.env.PUBLIC_SUPABASE}/storage/v1/object/public/images/developer.glb`, true);
 
 export default Developer;

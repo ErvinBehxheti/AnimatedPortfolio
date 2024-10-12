@@ -5,7 +5,7 @@ import { useGSAP } from "@gsap/react";
 
 const DemoComputer = (props) => {
   const group = useRef();
-  const { nodes, materials } = useGLTF("/models/computer.glb", true);
+  const { nodes, materials } = useGLTF(`${process.env.PUBLIC_SUPABASE}/storage/v1/object/public/images/computer.glb`, true);
 
   const txt = useVideoTexture(
     props.texture ? props.texture : "/textures/project/project1.mp4"
@@ -1015,6 +1015,6 @@ const DemoComputer = (props) => {
   );
 };
 
-useGLTF.preload("/models/computer.glb", true);
+useGLTF.preload(`${process.env.PUBLIC_SUPABASE}/storage/v1/object/public/images/computer.glb`, true);
 
 export default DemoComputer;
