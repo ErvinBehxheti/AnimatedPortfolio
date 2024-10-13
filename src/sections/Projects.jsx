@@ -1,6 +1,6 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { myProjects } from "../constants/index.js";
 import DemoComputer from "../components/DemoComputer.jsx";
 
@@ -8,6 +8,37 @@ const projectCount = myProjects.length;
 
 const Projects = () => {
   const [selectedProjectIndex, setSelectedProjectIndex] = useState(0);
+
+  const [isVisible, setIsVisible] = useState(false);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.disconnect(); // Stop observing once the component is in view
+          }
+        });
+      },
+      {
+        root: null, // Use the viewport
+        rootMargin: "0px",
+        threshold: 0.1, // Trigger when 10% of the component is in view
+      }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => {
+      if (observer && containerRef.current) {
+        observer.unobserve(containerRef.current);
+      }
+    };
+  }, []);
 
   const handleNavigation = (direction) => {
     setSelectedProjectIndex((prevIndex) => {
@@ -115,8 +146,11 @@ const Projects = () => {
         </div>
 
         {/* Demo Computer */}
-        <div className="border border-black-300 bg-black-200 rounded-lg min-h-96 md:h-full flex justify-center items-center">
-          <DemoComputer texture={currentProject.texture} />
+        <div
+          ref={containerRef}
+          className="border border-black-300 bg-black-200 rounded-lg min-h-96 md:h-full flex justify-center items-center"
+        >
+          {isVisible && <DemoComputer texture={currentProject.texture} />}
         </div>
       </div>
     </section>

@@ -1,15 +1,47 @@
+import { useEffect, useRef, useState } from "react";
 import Developer from "../components/Developer.jsx";
 import { workExperiences } from "../constants/index.js";
 
 const WorkExperience = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.disconnect(); // Stop observing once the component is in view
+          }
+        });
+      },
+      {
+        root: null, // Use the viewport
+        rootMargin: "0px",
+        threshold: 0.1, // Trigger when 10% of the component is in view
+      }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => {
+      if (observer && containerRef.current) {
+        observer.unobserve(containerRef.current);
+      }
+    };
+  }, []);
+
   return (
     <section className="c-space my-20" id="work">
       <div className="w-full text-white-600">
         <p className="head-text">My Work Experience</p>
 
         <div className="work-container">
-          <div className="work-canvas">
-            <Developer />
+          <div className="work-canvas" ref={containerRef}>
+            {isVisible && <Developer />}
           </div>
 
           <div className="work-content">
