@@ -115,7 +115,7 @@ const Projects = () => {
         </div>
 
         {/* Demo Computer */}
-        <div className="border border-black-300 bg-black-200 rounded-lg h-96 md:h-full flex justify-center items-center">
+        <div className="border border-black-300 bg-black-200 rounded-lg min-h-96 md:h-full flex justify-center items-center">
           <DemoComputer texture={currentProject.texture} />
         </div>
       </div>
