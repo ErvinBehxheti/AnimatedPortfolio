@@ -1,96 +1,145 @@
-import React, { useEffect, useRef } from "react";
-import { useGraph } from "@react-three/fiber";
-import { useAnimations, useFBX, useGLTF } from "@react-three/drei";
-import { SkeletonUtils } from "three-stdlib";
+import React, { useRef, useEffect } from "react";
+import * as THREE from "three";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import HolographicMaterial from "../material/hologramMaterial";
 
-const Developer = ({ animationName = "idle", ...props }) => {
-  const group = useRef();
-
-  const { scene } = useGLTF(`${process.env.PUBLIC_SUPABASE}/storage/v1/object/public/images/developer.glb`, true);
-  const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene]);
-  const { nodes, materials } = useGraph(clone);
-
-  const { animations: idleAnimation } = useFBX("/models/animations/idle.fbx");
-  const { animations: clappingAnimation } = useFBX(
-    "/models/animations/clapping.fbx"
-  );
-
-  idleAnimation[0].name = "idle";
-  clappingAnimation[0].name = "clapping";
-
-  const { actions } = useAnimations(
-    [idleAnimation[0], clappingAnimation[0]],
-    group
-  );
+const Developer = () => {
+  const mountRef = useRef(null);
+  const sceneRef = useRef(null);
 
   useEffect(() => {
-    actions[animationName].reset().fadeIn(0.5).play();
-    return () => actions[animationName].fadeOut(0.5);
-  }, [animationName]);
-  return (
-    <group ref={group} {...props} dispose={null}>
-      <primitive object={nodes.Hips} />
-      <skinnedMesh
-        name="EyeLeft"
-        geometry={nodes.EyeLeft.geometry}
-        material={materials.Wolf3D_Eye}
-        skeleton={nodes.EyeLeft.skeleton}
-        morphTargetDictionary={nodes.EyeLeft.morphTargetDictionary}
-        morphTargetInfluences={nodes.EyeLeft.morphTargetInfluences}
-      />
-      <skinnedMesh
-        name="EyeRight"
-        geometry={nodes.EyeRight.geometry}
-        material={materials.Wolf3D_Eye}
-        skeleton={nodes.EyeRight.skeleton}
-        morphTargetDictionary={nodes.EyeRight.morphTargetDictionary}
-        morphTargetInfluences={nodes.EyeRight.morphTargetInfluences}
-      />
-      <skinnedMesh
-        name="Wolf3D_Head"
-        geometry={nodes.Wolf3D_Head.geometry}
-        material={materials.Wolf3D_Skin}
-        skeleton={nodes.Wolf3D_Head.skeleton}
-        morphTargetDictionary={nodes.Wolf3D_Head.morphTargetDictionary}
-        morphTargetInfluences={nodes.Wolf3D_Head.morphTargetInfluences}
-      />
-      <skinnedMesh
-        name="Wolf3D_Teeth"
-        geometry={nodes.Wolf3D_Teeth.geometry}
-        material={materials.Wolf3D_Teeth}
-        skeleton={nodes.Wolf3D_Teeth.skeleton}
-        morphTargetDictionary={nodes.Wolf3D_Teeth.morphTargetDictionary}
-        morphTargetInfluences={nodes.Wolf3D_Teeth.morphTargetInfluences}
-      />
-      <skinnedMesh
-        geometry={nodes.Wolf3D_Hair.geometry}
-        material={materials.Wolf3D_Hair}
-        skeleton={nodes.Wolf3D_Hair.skeleton}
-      />
-      <skinnedMesh
-        geometry={nodes.Wolf3D_Body.geometry}
-        material={materials.Wolf3D_Body}
-        skeleton={nodes.Wolf3D_Body.skeleton}
-      />
-      <skinnedMesh
-        geometry={nodes.Wolf3D_Outfit_Bottom.geometry}
-        material={materials.Wolf3D_Outfit_Bottom}
-        skeleton={nodes.Wolf3D_Outfit_Bottom.skeleton}
-      />
-      <skinnedMesh
-        geometry={nodes.Wolf3D_Outfit_Footwear.geometry}
-        material={materials.Wolf3D_Outfit_Footwear}
-        skeleton={nodes.Wolf3D_Outfit_Footwear.skeleton}
-      />
-      <skinnedMesh
-        geometry={nodes.Wolf3D_Outfit_Top.geometry}
-        material={materials.Wolf3D_Outfit_Top}
-        skeleton={nodes.Wolf3D_Outfit_Top.skeleton}
-      />
-    </group>
-  );
-};
+    const mount = mountRef.current;
 
-useGLTF.preload(`${process.env.PUBLIC_SUPABASE}/storage/v1/object/public/images/developer.glb`, true);
+    // Scene setup
+    const scene = new THREE.Scene();
+    sceneRef.current = scene;
+
+    // Camera setup
+    const camera = new THREE.PerspectiveCamera(
+      50,
+      mount.clientWidth / mount.clientHeight, // Dynamically set aspect ratio
+      0.1,
+      1000
+    );
+    camera.position.set(-3, 1, 5);
+
+    // Renderer setup
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setPixelRatio(mount.devicePixelRatio);
+    renderer.setSize(mount.clientWidth, mount.clientHeight); // Match container size
+    renderer.setClearColor(0x000000, 0); // Optional: transparent background
+    mount.appendChild(renderer.domElement);
+
+    let mixer;
+    const holoMaterial = new HolographicMaterial();
+
+    // Load 3D model
+    const loader = new GLTFLoader();
+    const dracoLoader = new DRACOLoader();
+    dracoLoader.setDecoderPath(
+      "https://www.gstatic.com/draco/versioned/decoders/1.5.7/"
+    );
+    loader.setDRACOLoader(dracoLoader);
+
+    loader.load(
+      "models/avatar.glb",
+      (gltf) => {
+        const model = gltf.scene;
+        model.position.set(0, -1.5, 0);
+        model.scale.set(2, 2, 2);
+
+        model.traverse((node) => {
+          if (node instanceof THREE.Mesh) {
+            node.material = holoMaterial;
+          }
+        });
+
+        scene.add(model);
+        mixer = new THREE.AnimationMixer(model);
+
+        gltf.animations.forEach((clip) => {
+          mixer.clipAction(clip).play();
+        });
+        loader.load(
+          "models/avatar-holo.glb",
+          function (secondGltf) {
+            const secondModel = secondGltf.scene;
+            secondModel.position.set(0, -0.1, 0);
+            secondModel.scale.set(0.5, 0.5, 0.5);
+
+            model.add(secondModel);
+
+            secondGltf.animations.forEach((clip) => {
+              const secondAction = mixer.clipAction(clip);
+              secondAction.play();
+            });
+          },
+          undefined,
+          function (error) {
+            console.error("Error loading the second model:", error);
+          }
+        );
+      },
+      undefined,
+      function (error) {
+        console.error("Error loading model:", error);
+      }
+    );
+
+    // Lights
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+    scene.add(ambientLight);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    directionalLight.position.set(5, 5, 5);
+    scene.add(directionalLight);
+
+    // OrbitControls
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableZoom = false; // Disable zoom
+    controls.enableDamping = true; // Smooth controls
+    controls.dampingFactor = 0.05;
+
+    // Resize handling
+    const handleResize = () => {
+      const newWidth = mount.clientWidth;
+      const newHeight = mount.clientHeight;
+      camera.aspect = newWidth / newHeight; // Adjust camera aspect ratio
+      camera.updateProjectionMatrix();
+      renderer.setSize(newWidth, newHeight); // Update renderer size
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Animation loop
+    const clock = new THREE.Clock();
+    const animate = () => {
+      requestAnimationFrame(animate);
+      const delta = clock.getDelta();
+      mixer?.update(delta);
+      holoMaterial.update();
+      controls.update();
+      renderer.render(scene, camera);
+    };
+    animate();
+
+    // Cleanup
+    return () => {
+      renderer.dispose();
+      renderer.domElement.remove();
+      controls.dispose();
+      scene.traverse((child) => {
+        if (child.isMesh) {
+          child.geometry.dispose();
+          child.material.dispose();
+        }
+      });
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  return <div ref={mountRef} className="w-full h-full" />;
+};
 
 export default Developer;

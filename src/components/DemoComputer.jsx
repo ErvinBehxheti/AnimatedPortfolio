@@ -8,7 +8,6 @@ const DemoComputer = ({ texture }) => {
   const mountRef = useRef(null);
   const monitorScreenRef = useRef(null); // Reference to the monitor screen mesh
   const sceneRef = useRef(null);
-  const mixerRef = useRef(null);
 
   useEffect(() => {
     const mount = mountRef.current;
@@ -28,7 +27,7 @@ const DemoComputer = ({ texture }) => {
 
     // Renderer setup
     const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setPixelRatio(mount.devicePixelRatio);
     renderer.setSize(mount.clientWidth, mount.clientHeight); // Match container size
     renderer.setClearColor(0x000000, 0); // Optional: transparent background
     mount.appendChild(renderer.domElement);
@@ -61,13 +60,6 @@ const DemoComputer = ({ texture }) => {
         monitorScreen.material = new THREE.MeshBasicMaterial({
           map: screenTexture,
         });
-
-        // Handle animations
-        if (gltf.animations.length > 0) {
-          const mixer = new THREE.AnimationMixer(model);
-          mixerRef.current = mixer;
-          gltf.animations.forEach((clip) => mixer.clipAction(clip).play());
-        }
       },
       undefined,
       (error) => {
@@ -98,13 +90,8 @@ const DemoComputer = ({ texture }) => {
     };
 
     window.addEventListener("resize", handleResize);
-
-    // Animation loop
-    const clock = new THREE.Clock();
     const animate = () => {
       requestAnimationFrame(animate);
-      const delta = clock.getDelta();
-      if (mixerRef.current) mixerRef.current.update(delta);
       controls.update();
       renderer.render(scene, camera);
     };
