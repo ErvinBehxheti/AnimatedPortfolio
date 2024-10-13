@@ -20,10 +20,14 @@ const Contact = () => {
     e.preventDefault();
     setLoading(true);
 
+    const emailId = process.env.PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId = process.env.PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.PUBLIC_EMAILJS_PUBLIC_KEY;
+
     emailjs
       .send(
-        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
+        emailId,
+        templateId,
         {
           from_name: form.name,
           to_name: "Ervin Behxheti",
@@ -31,10 +35,11 @@ const Contact = () => {
           to_email: "ervin.behxheti.dev@gmail.com",
           message: form.message,
         },
-        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
+        publicKey
       )
       .then(
         () => {
+          console.log("hey");
           setLoading(false);
           showAlert({
             show: true,
@@ -69,12 +74,6 @@ const Contact = () => {
       {alert.show && <Alert {...alert} />}
 
       <div className="relative min-h-screen flex items-center justify-center flex-col">
-        <img
-          src="/assets/terminal.webp"
-          alt="terminal-bg"
-          className="absolute inset-0 min-h-screen"
-        />
-
         <div className="contact-container">
           <h3 className="head-text">Let's talk</h3>
           <p className="text-lg text-white-600 mt-3">
