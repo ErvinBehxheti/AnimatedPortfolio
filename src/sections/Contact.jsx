@@ -132,6 +132,8 @@ const Contact = () => {
                 src="/assets/arrow-up.png"
                 alt="arrow-up"
                 className="field-btn_arrow"
+                width={10}
+                height={10}
               />
             </button>
           </form>

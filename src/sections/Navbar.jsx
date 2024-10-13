@@ -39,6 +39,8 @@ const Navbar = () => {
               src={isOpen ? "assets/close.svg" : "assets/menu.svg"}
               alt="toggle"
               className="w-6 h-6"
+              width={24}
+              height={24}
             />
           </button>
 

@@ -46,48 +46,43 @@ const About = () => {
                   <img
                     src="/assets/react.svg"
                     alt="react"
-                    width={"80px"}
-                    height={"80px"}
+                    width={80}
+                    height={80}
                   />
                 </div>
                 <div className="face2">
                   <img
                     src="/assets/html.svg"
                     alt="html"
-                    width={"80px"}
-                    height={"80px"}
+                    width={80}
+                    height={80}
                   />
                 </div>
                 <div className="face3">
-                  <img
-                    src="/assets/css.svg"
-                    alt="css"
-                    width={"80px"}
-                    height={"80px"}
-                  />
+                  <img src="/assets/css.svg" alt="css" width={80} height={80} />
                 </div>
                 <div className="face4">
                   <img
                     src="/assets/javascript.svg"
                     alt="javascript"
-                    width={"80px"}
-                    height={"80px"}
+                    width={80}
+                    height={80}
                   />
                 </div>
                 <div className="face5">
                   <img
                     src="/assets/git.svg"
                     alt="github"
-                    width={"80px"}
-                    height={"80px"}
+                    width={80}
+                    height={80}
                   />
                 </div>
                 <div className="face6">
                   <img
                     src="/assets/node.svg"
                     alt="nodejs"
-                    width={"80px"}
-                    height={"80px"}
+                    width={80}
+                    height={80}
                   />
                 </div>
               </div>
@@ -175,6 +170,8 @@ const About = () => {
                 <img
                   src={hasCopied ? "assets/tick.svg" : "assets/copy.svg"}
                   className="w-10 h-10"
+                  width={40}
+                  height={40}
                   alt="copy"
                 />
                 <p className="lg:text-xl md:text-lg font-medium text-gray_gradient text-white">

@@ -85,6 +85,8 @@ const Projects = () => {
             <img
               className="w-10 h-10 shadow-sm"
               src={currentProject.logo}
+              width={40}
+              height={40}
               alt="logo"
             />
           </div>
@@ -103,7 +105,7 @@ const Projects = () => {
             <div className="flex items-center gap-3">
               {currentProject.tags.map((tag, index) => (
                 <div key={index} className="tech-logo">
-                  <img src={tag.path} alt={tag.name} />
+                  <img src={tag.path} alt={tag.name} width={40} height={40} />
                 </div>
               ))}
             </div>
@@ -119,7 +121,13 @@ const Projects = () => {
                   ? "Check Live Site"
                   : "Can't Check Live Site"}
               </p>
-              <img src="/assets/arrow-up.png" alt="arrow" className="w-3 h-3" />
+              <img
+                src="/assets/arrow-up.png"
+                alt="arrow"
+                className="w-3 h-3"
+                width={12}
+                height={12}
+              />
             </a>
           </div>
 
@@ -129,7 +137,13 @@ const Projects = () => {
               className="arrow-btn"
               onClick={() => handleNavigation("previous")}
             >
-              <img src="/assets/left-arrow.png" alt="left arrow" />
+              <img
+                src="/assets/left-arrow.png"
+                alt="left arrow"
+                width={16}
+                height={16}
+                className="w-4 h-4"
+              />
             </button>
 
             <button
@@ -139,6 +153,8 @@ const Projects = () => {
               <img
                 src="/assets/right-arrow.png"
                 alt="right arrow"
+                width={16}
+                height={16}
                 className="w-4 h-4"
               />
             </button>
