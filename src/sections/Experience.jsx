@@ -40,7 +40,7 @@ const WorkExperience = () => {
         <p className="head-text">My Work Experience</p>
 
         <div className="work-container">
-          <div className="work-canvas" ref={containerRef}>
+          <div className="work-canvas min-h-96" ref={containerRef}>
             {isVisible && <Developer />}
           </div>
 

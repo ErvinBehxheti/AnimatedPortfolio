@@ -99,7 +99,7 @@ const Projects = () => {
           </div>
 
           {/* Tags and Link */}
-          <div className="flex items-center justify-between flex-wrap gap-5">
+          <div className="flex items-center justify-between flex-wrap gap-5 max-[440px]:hidden">
             <div className="flex items-center gap-3">
               {currentProject.tags.map((tag, index) => (
                 <div key={index} className="tech-logo">
