@@ -25,10 +25,8 @@ export const myProjects = [
   {
     title: "Neural Blogging",
     desc: "This project is a Progressive Web App (PWA) designed to provide a seamless native app experience on mobile devices. It leverages ChatGPT and web APIs to assist users in creating blog posts. When a new blog post is published, all registered devices with notifications enabled will receive a notification, ensuring users stay updated with the latest content. The app combines the accessibility of a website with the functionality and engagement of a native application. For the moment I have disabled the notification feature",
-    subdesc:
-      "A Progressive Web App (PWA) that allows users to write their own articles with the help of AI-based autosuggestions powered by ChatGPT. Additionally, it features a chatbot with the personality of Dumbledore, where users can ask questions and receive insightful answers.",
     href: "https://neural-blogging.vercel.app",
-    texture: "/textures/project/neural-blogging.mp4",
+    texture: "/textures/neural-blogging.webp",
     logo: "/assets/neural-blogging.png",
     logoStyle: {
       backgroundColor: "#13202F",
@@ -67,9 +65,7 @@ export const myProjects = [
   {
     title: "Kosherja (BeeHive)",
     desc: "This project is a user management platform with a modern UI/UX. Admins sign up with token-based authentication and use these tokens to scrape LinkedIn profiles for public information, including emails. They can then contact these users, manage them on a dedicated page, and store all scraped data. Additionally, the platform allows admins to download user data in Excel format.",
-    subdesc:
-      "Built as a unique Software-as-a-Service app with Next.js 14, Tailwind CSS, TypeScript, Framer Motion and Cheerio for Scraping. Kosherja is designed for optimal performance and high traffic requests.",
-    texture: "/textures/project/kosherja.mp4",
+    texture: "/textures/kosherja.webp",
     logo: "/assets/kosherja-logo.svg",
     logoStyle: {
       backgroundColor: "#2A1816",
@@ -107,11 +103,9 @@ export const myProjects = [
   },
   {
     title: "DigitalLove - ECommerce Store",
-    desc: "This project is a streamlined eCommerce platform built with Next.js, Sanity, and Stripe. It features a user-friendly interface where customers can browse products, view detailed descriptions, and make secure purchases. Sanity handles content management, allowing for easy updates to product listings and site content. Stripe integrates for seamless payment processing, supporting various payment methods and ensuring secure transactions. The platform provides a smooth shopping experience with fast loading times and responsive design, optimized for both desktop and mobile devices.",
-    subdesc:
-      "A simple eCommerce site using Next.js, Sanity for content management, and Stripe for secure payments.",
+    desc: "This project is a streamlined eCommerce platform built with Next.js, Sanity, and Stripe. It features a user-friendly interface where customers can browse products, view detailed descriptions, and make secure purchases. Sanity handles content management, allowing for easy updates to product listings and site content. Stripe for ensuring secure transactions. The platform provides a smooth shopping experience with fast loading times and responsive design, optimized for both desktop and mobile devices.",
     href: "https://next-typescript-ecommerce-sanity-stripe-wggq.vercel.app/",
-    texture: "/textures/project/digital-love.mp4",
+    texture: "/textures/ecommerce.webp",
     logo: "https://avatars.githubusercontent.com/u/108547162?s=200&v=4",
     logoStyle: {
       backgroundColor: "#60f5a1",
@@ -161,11 +155,9 @@ export const myProjects = [
   },
   {
     title: "PriceSeer",
-    desc: "Using Next.js Server Actions, I created a web scraper that collects product information from the Amazon website and adds it to PriceSeer, a price-tracking platform. The scraper efficiently retrieves data such as product prices, descriptions, and availability. To enhance user experience, I also implemented cron jobs that run at scheduled intervals, automatically notifying subscribers whenever there are changes to the product's price or other key details. This ensures users are kept informed in real-time, allowing them to act on price fluctuations or product updates quickly. (SCRAPING NOT WORKING MOMENTARILY)",
-    subdesc:
-      "Scraping website with cron job implementation fully utilizing the back end power of Next.js",
+    desc: "Using Next.js Server Actions, I created a web scraper that collects product information from the Amazon website and adds it to PriceSeer, a price-tracking platform. The scraper efficiently retrieves data such as product prices, descriptions, and availability. To enhance user experience, I also implemented cron jobs that run at scheduled intervals, automatically notifying subscribers whenever there are changes to the product's price or other key details (SCRAPING NOT WORKING MOMENTARILY)",
     href: "https://priceseer.vercel.app/",
-    texture: "/textures/project/priceseer.mp4",
+    texture: "/textures/scraping.webp",
     logo: "https://priceseer.vercel.app/assets/icons/logo.svg",
     logoStyle: {
       backgroundColor: "#13202F",
@@ -203,10 +195,9 @@ export const myProjects = [
   },
   {
     title: "TikTik - Social Media App",
-    desc: "The website is a TikTok clone built using modern web development technologies, providing a seamless and engaging experience for users. Developed with Next.js, the site ensures fast server-side rendering and optimized performance. Tailwind CSS is used to create a sleek, responsive, and mobile-friendly user interface, giving the platform a visually appealing design that works effortlessly across devices.Sanity.io powers the backend, allowing for efficient content management and dynamic video uploads. The integration of Google authentication simplifies the login process, offering users a secure and frictionless way to sign in or create accounts. Search filters are implemented to help users discover content easily, enhancing the browsing experience.The file structure of the application is well-organized, promoting scalability and maintainability.",
-    subdesc: "",
+    desc: "The website is a TikTok clone built using modern web development technologies. Developed with Next.js, the site ensures fast server-side rendering and optimized performance. Tailwind CSS is used to create a responsive and mobile-friendly user interface, that works effortlessly across devices.Sanity.io for the backend, allowing for content management and dynamic video uploads. The integration of Google authentication simplifies the login process, offering users a secure way to sign in or create accounts. Search filters are implemented to help users discover content easily.The file structure of the application is well-organized, promoting scalability and maintainability.",
     href: "https://tiktik-03.vercel.app/",
-    texture: "/textures/project/tiktik.mp4",
+    texture: "/textures/socialmedia.webp",
     logo: "https://www.freepnglogos.com/uploads/camera-logo-png/photography-clipart-camera-logo-pencil-color-6.png",
     logoStyle: {
       backgroundColor: "#60f5a1",
@@ -247,10 +238,8 @@ export const myProjects = [
   {
     title: "Admin Dashboard",
     desc: "This advanced dashboard provides a comprehensive suite of tools for efficient data management and visualization. It includes interactive graphs for data analysis, Kanban boards for task management, and to-do lists for tracking progress. Users can customize their experience with color pickers and manage data through dynamic tables. The dashboard is designed for versatility, offering a robust and intuitive interface to handle a wide range of features and functionalities seamlessly.",
-    subdesc:
-      "Built with React and Syncfusion components for data management and visualization.",
     href: "https://react-typescript-syncfusion-dashboard.vercel.app/",
-    texture: "/textures/project/admin-dashboard.mp4",
+    texture: "/textures/dashboard.webp",
     logo: "https://cdn-icons-png.flaticon.com/512/6820/6820898.png",
     logoStyle: {
       backgroundColor: "#0E1F38",

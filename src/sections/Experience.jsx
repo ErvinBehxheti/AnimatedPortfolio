@@ -1,13 +1,13 @@
-import { Suspense, useState } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
+import { Suspense, useState } from "react";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
 
-import Developer from '../components/Developer.jsx';
-import CanvasLoader from '../components/Loading.jsx';
-import { workExperiences } from '../constants/index.js';
+import Developer from "../components/Developer.jsx";
+import CanvasLoader from "../components/Loading.jsx";
+import { workExperiences } from "../constants/index.js";
 
 const WorkExperience = () => {
-  const [animationName, setAnimationName] = useState('idle');
+  const [animationName, setAnimationName] = useState("idle");
 
   return (
     <section className="c-space my-20" id="work">
@@ -23,7 +23,11 @@ const WorkExperience = () => {
               <OrbitControls enableZoom={false} maxPolarAngle={Math.PI / 2} />
 
               <Suspense fallback={<CanvasLoader />}>
-                <Developer position-y={-3} scale={3} animationName={animationName} />
+                <Developer
+                  position-y={-3}
+                  scale={3}
+                  animationName={animationName}
+                />
               </Suspense>
             </Canvas>
           </div>
@@ -34,9 +38,12 @@ const WorkExperience = () => {
                 <div
                   key={index}
                   onClick={() => setAnimationName(item.animation.toLowerCase())}
-                  onPointerOver={() => setAnimationName(item.animation.toLowerCase())}
-                  onPointerOut={() => setAnimationName('idle')}
-                  className="work-content_container group">
+                  onPointerOver={() =>
+                    setAnimationName(item.animation.toLowerCase())
+                  }
+                  onPointerOut={() => setAnimationName("idle")}
+                  className="work-content_container group"
+                >
                   <div className="flex flex-col h-full justify-start items-center py-2">
                     <div className="work-content_logo">
                       <img className="w-full h-full" src={item.icon} alt="" />
@@ -50,8 +57,13 @@ const WorkExperience = () => {
                     <p className="text-sm mb-5">
                       {item.pos} -- <span>{item.duration}</span>
                     </p>
-                    {item.bulletPoints.map((bulletPoint) => (
-                      <p className="group-hover:text-white transition-all ease-in-out duration-500">{bulletPoint}</p>
+                    {item.bulletPoints.map((bulletPoint, index) => (
+                      <p
+                        className="group-hover:text-white transition-all ease-in-out duration-500"
+                        key={index}
+                      >
+                        {bulletPoint}
+                      </p>
                     ))}
                   </div>
                 </div>

@@ -1,11 +1,7 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { Suspense, useState } from "react";
-import { Canvas } from "@react-three/fiber";
-import { Center, OrbitControls } from "@react-three/drei";
-
+import { useState } from "react";
 import { myProjects } from "../constants/index.js";
-import CanvasLoader from "../components/Loading.jsx";
 import DemoComputer from "../components/DemoComputer.jsx";
 
 const projectCount = myProjects.length;
@@ -38,7 +34,11 @@ const Projects = () => {
       <p className="head-text">My Selected Work</p>
 
       <div className="grid lg:grid-cols-2 grid-cols-1 mt-12 gap-5 w-full">
-        <div className="flex flex-col gap-5 relative sm:p-10 py-10 px-5 backdrop-blur-md shadow-2xl shadow-black-200">
+        {/* Project Card */}
+        <div
+          className="flex flex-col gap-5 relative sm:p-10 py-10 px-5 backdrop-blur-md shadow-2xl shadow-black-200"
+          style={{ minHeight: "500px", height: "100%" }} // Ensure cards have a minimum height
+        >
           <div className="absolute top-0 right-0">
             <img
               src={currentProject.spotlight}
@@ -58,15 +58,16 @@ const Projects = () => {
             />
           </div>
 
-          <div className="flex flex-col gap-5 text-white-600 my-5">
+          {/* Text Content */}
+          <div className="flex flex-col gap-5 text-white-600 my-5 flex-grow">
             <p className="text-white text-2xl font-semibold animatedText">
               {currentProject.title}
             </p>
 
             <p className="animatedText">{currentProject.desc}</p>
-            <p className="animatedText">{currentProject.subdesc}</p>
           </div>
 
+          {/* Tags and Link */}
           <div className="flex items-center justify-between flex-wrap gap-5">
             <div className="flex items-center gap-3">
               {currentProject.tags.map((tag, index) => (
@@ -91,6 +92,7 @@ const Projects = () => {
             </a>
           </div>
 
+          {/* Navigation Arrows */}
           <div className="flex justify-between items-center mt-7">
             <button
               className="arrow-btn"
@@ -112,19 +114,9 @@ const Projects = () => {
           </div>
         </div>
 
-        <div className="border border-black-300 bg-black-200 rounded-lg h-96 md:h-full">
-          <Canvas>
-            <ambientLight intensity={Math.PI} />
-            <directionalLight position={[10, 10, 5]} />
-            <Center>
-              <Suspense fallback={<CanvasLoader />}>
-                <group scale={2} position={[0, -3, 0]} rotation={[0, -0.1, 0]}>
-                  <DemoComputer texture={currentProject.texture} />
-                </group>
-              </Suspense>
-            </Center>
-            <OrbitControls maxPolarAngle={Math.PI / 2} enableZoom={false} />
-          </Canvas>
+        {/* Demo Computer */}
+        <div className="border border-black-300 bg-black-200 rounded-lg h-96 md:h-full flex justify-center items-center">
+          <DemoComputer texture={currentProject.texture} />
         </div>
       </div>
     </section>
