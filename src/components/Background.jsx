@@ -1,5 +1,13 @@
 import React, { useEffect, useRef } from "react";
-import * as THREE from "three";
+import {
+  Scene,
+  PerspectiveCamera,
+  WebGLRenderer,
+  AnimationMixer,
+  AmbientLight,
+  DirectionalLight,
+  Clock,
+} from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
@@ -9,8 +17,8 @@ const BackgroundMatrix = () => {
 
   useEffect(() => {
     // Create scene, camera, and renderer
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(
+    const scene = new Scene();
+    const camera = new PerspectiveCamera(
       100,
       window.innerWidth / window.innerHeight,
       0.1,
@@ -18,7 +26,7 @@ const BackgroundMatrix = () => {
     );
     camera.position.set(0, 100, -200);
 
-    const renderer = new THREE.WebGLRenderer();
+    const renderer = new WebGLRenderer();
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor(0x000000, 0); // Transparent background
@@ -42,7 +50,7 @@ const BackgroundMatrix = () => {
         const model = gltf.scene;
         model.scale.set(100, 100, 100);
         scene.add(model);
-        mixer = new THREE.AnimationMixer(model);
+        mixer = new AnimationMixer(model);
 
         gltf.animations.forEach((clip) => mixer.clipAction(clip).play());
       },
@@ -53,9 +61,9 @@ const BackgroundMatrix = () => {
     );
 
     // Add lighting
-    const ambientLight = new THREE.AmbientLight(0x404040, 1);
+    const ambientLight = new AmbientLight(0x404040, 1);
     scene.add(ambientLight);
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+    const directionalLight = new DirectionalLight(0xffffff, 1);
     directionalLight.position.set(10, 10, 10);
     scene.add(directionalLight);
 
@@ -80,7 +88,7 @@ const BackgroundMatrix = () => {
     window.addEventListener("scroll", handleScroll);
 
     // Animation loop
-    const clock = new THREE.Clock();
+    const clock = new Clock();
     let isAnimating = true;
 
     const animate = () => {

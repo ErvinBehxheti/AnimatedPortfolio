@@ -1,8 +1,16 @@
 import React, { useRef, useEffect } from "react";
-import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import {
+  AmbientLight,
+  DirectionalLight,
+  MeshBasicMaterial,
+  PerspectiveCamera,
+  Scene,
+  TextureLoader,
+  WebGLRenderer,
+} from "three";
 
 const DemoComputer = ({ texture }) => {
   const mountRef = useRef(null);
@@ -13,11 +21,11 @@ const DemoComputer = ({ texture }) => {
     const mount = mountRef.current;
 
     // Scene setup
-    const scene = new THREE.Scene();
+    const scene = new Scene();
     sceneRef.current = scene;
 
     // Camera setup
-    const camera = new THREE.PerspectiveCamera(
+    const camera = new PerspectiveCamera(
       35,
       mount.clientWidth / mount.clientHeight, // Dynamically set aspect ratio
       0.1,
@@ -26,7 +34,7 @@ const DemoComputer = ({ texture }) => {
     camera.position.set(0, 1.5, 5);
 
     // Renderer setup
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    const renderer = new WebGLRenderer({ antialias: true });
     renderer.setPixelRatio(mount.devicePixelRatio);
     renderer.setSize(mount.clientWidth, mount.clientHeight); // Match container size
     renderer.setClearColor(0x000000, 0); // Optional: transparent background
@@ -53,11 +61,11 @@ const DemoComputer = ({ texture }) => {
         monitorScreenRef.current = monitorScreen;
 
         // Load the initial texture
-        const textureLoader = new THREE.TextureLoader();
+        const textureLoader = new TextureLoader();
         const screenTexture = textureLoader.load(texture, (tex) => {
           tex.flipY = false;
         });
-        monitorScreen.material = new THREE.MeshBasicMaterial({
+        monitorScreen.material = new MeshBasicMaterial({
           map: screenTexture,
         });
       },
@@ -68,9 +76,9 @@ const DemoComputer = ({ texture }) => {
     );
 
     // Lights
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+    const ambientLight = new AmbientLight(0xffffff, 0.8);
     scene.add(ambientLight);
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    const directionalLight = new DirectionalLight(0xffffff, 0.8);
     directionalLight.position.set(5, 5, 5);
     scene.add(directionalLight);
 
@@ -115,7 +123,7 @@ const DemoComputer = ({ texture }) => {
   // Update the monitor texture when `texture` prop changes
   useEffect(() => {
     if (monitorScreenRef.current) {
-      const textureLoader = new THREE.TextureLoader();
+      const textureLoader = new TextureLoader();
       const newTexture = textureLoader.load(texture, (tex) => {
         tex.flipY = false; // Ensure the texture isn't flipped
       });

@@ -1,9 +1,18 @@
 import React, { useRef, useEffect } from "react";
-import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import HolographicMaterial from "../material/hologramMaterial";
+import {
+  AmbientLight,
+  AnimationMixer,
+  Clock,
+  DirectionalLight,
+  Mesh,
+  PerspectiveCamera,
+  Scene,
+  WebGLRenderer,
+} from "three";
 
 const Developer = () => {
   const mountRef = useRef(null);
@@ -13,11 +22,11 @@ const Developer = () => {
     const mount = mountRef.current;
 
     // Scene setup
-    const scene = new THREE.Scene();
+    const scene = new Scene();
     sceneRef.current = scene;
 
     // Camera setup
-    const camera = new THREE.PerspectiveCamera(
+    const camera = new PerspectiveCamera(
       50,
       mount.clientWidth / mount.clientHeight, // Dynamically set aspect ratio
       0.1,
@@ -26,7 +35,7 @@ const Developer = () => {
     camera.position.set(-3, 1, 5);
 
     // Renderer setup
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    const renderer = new WebGLRenderer({ antialias: true });
     renderer.setPixelRatio(mount.devicePixelRatio);
     renderer.setSize(mount.clientWidth, mount.clientHeight); // Match container size
     renderer.setClearColor(0x000000, 0); // Optional: transparent background
@@ -51,13 +60,13 @@ const Developer = () => {
         model.scale.set(2, 2, 2);
 
         model.traverse((node) => {
-          if (node instanceof THREE.Mesh) {
+          if (node instanceof Mesh) {
             node.material = holoMaterial;
           }
         });
 
         scene.add(model);
-        mixer = new THREE.AnimationMixer(model);
+        mixer = new AnimationMixer(model);
 
         gltf.animations.forEach((clip) => {
           mixer.clipAction(clip).play();
@@ -89,9 +98,9 @@ const Developer = () => {
     );
 
     // Lights
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+    const ambientLight = new AmbientLight(0xffffff, 0.8);
     scene.add(ambientLight);
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    const directionalLight = new DirectionalLight(0xffffff, 0.8);
     directionalLight.position.set(5, 5, 5);
     scene.add(directionalLight);
 
@@ -113,7 +122,7 @@ const Developer = () => {
     window.addEventListener("resize", handleResize);
 
     // Animation loop
-    const clock = new THREE.Clock();
+    const clock = new Clock();
     const animate = () => {
       requestAnimationFrame(animate);
       const delta = clock.getDelta();
