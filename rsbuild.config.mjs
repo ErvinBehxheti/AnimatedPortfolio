@@ -10,7 +10,9 @@ export default defineConfig({
   },
   performance: {
     chunkSplit: {
-      strategy: process.env.NODE_ENV === 'production' ? 'split-by-module' : 'custom',
+      strategy: 'split-by-size',
+      minSize: 30000,
+      maxSize: 50000
     },
   },
 });

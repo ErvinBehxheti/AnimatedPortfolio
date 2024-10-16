@@ -23,9 +23,12 @@ const Footer = () => {
       </div>
 
       <p className="text-white-500 text-center">
-        All the web’s a stage, And all the users merely players; They have their
-        clicks and scrolls, And one man in his time serves many views, His
-        code’s but a simple act of elegance.
+        If you don't like the contact form, here's my email{" "}
+        <em>
+          <a href="mailto:ervin.behxheti.dev@gmail.com">
+            ervin.behxheti.dev@gmail.com
+          </a>
+        </em>
       </p>
     </footer>
   );
