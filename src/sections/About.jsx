@@ -21,11 +21,11 @@ const About = () => {
         <div className="col-span-1 xl:row-span-3">
           <div className="grid-container">
             <img
-              src={`${process.env.PUBLIC_SUPABASE}/storage/v1/object/public/images/grid1.webp`}
+              src="/assets/id-photo.jpg"
               alt="grid-1"
               className="w-full sm:h-[276px] object-contain"
-              width={1028}
-              height={1536}
+              width={2592}
+              height={3872}
             />{" "}
             <div>
               <p className="grid-headtext">Hi, I’m Ervin Behxheti</p>
