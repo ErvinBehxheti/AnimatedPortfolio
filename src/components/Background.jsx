@@ -70,6 +70,7 @@ const BackgroundMatrix = () => {
     // Add Orbit Controls
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableZoom = false;
+    controls.enableRotate = false;
 
     // Handle window resize
     const handleResize = () => {
